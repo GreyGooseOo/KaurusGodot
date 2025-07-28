@@ -208,7 +208,7 @@ func effet_attaque_ennemi() -> void:
 
 func fin_de_combat() -> void:
 	if kaurusAllie.hp <= 0:
-		afficher_dialogue(kaurusAllie.nom + " est KO.. ")
+		afficher_dialogue(kaurusAllie.nom + " est KO... ")
 		masquer_dialogue()
 		var teamAlive = false
 		for elem in equipe.liste:
