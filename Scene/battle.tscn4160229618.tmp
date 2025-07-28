@@ -1,0 +1,160 @@
+[gd_scene load_steps=8 format=3 uid="uid://5je5c3s3tlg3"]
+
+[ext_resource type="Script" uid="uid://djgyyoos0gufh" path="res://Script/battle.gd" id="1_erfcq"]
+[ext_resource type="SpriteFrames" uid="uid://ca7j1agt3bgs1" path="res://AnimSprite/Feu.tres" id="2_erfcq"]
+[ext_resource type="FontFile" uid="uid://qpspy0fwvqqi" path="res://font/Basketball.otf" id="2_flaeg"]
+[ext_resource type="SpriteFrames" uid="uid://c2kodpd0hh3u5" path="res://AnimSprite/Dresseur.tres" id="4_oklq0"]
+[ext_resource type="Texture2D" uid="uid://cqn0kjop3k7q1" path="res://Picture/Under.png" id="5_oklq0"]
+[ext_resource type="Texture2D" uid="uid://dksv2nhf1u58j" path="res://Picture/over.png" id="6_wcqvn"]
+[ext_resource type="Texture2D" uid="uid://cr3csg4i1xq08" path="res://Picture/Progress_Green.png" id="7_oklq0"]
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_erfcq")
+
+[node name="KaurusName" type="Label" parent="."]
+offset_left = 840.0
+offset_top = 923.0
+offset_right = 948.0
+offset_bottom = 963.0
+theme_override_fonts/font = ExtResource("2_flaeg")
+theme_override_font_sizes/font_size = 40
+text = "kaurus"
+
+[node name="Kaurus" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(544, 883)
+scale = Vector2(6, 6)
+sprite_frames = ExtResource("2_erfcq")
+animation = &"Base"
+frame_progress = 0.0927357
+
+[node name="Dresseur" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(168, 883)
+rotation = 3.14159
+scale = Vector2(5, -5)
+sprite_frames = ExtResource("4_oklq0")
+animation = &"ordre"
+frame = 2
+frame_progress = 0.890643
+
+[node name="JaugeKaurus" type="TextureProgressBar" parent="."]
+offset_left = 816.0
+offset_top = 955.0
+offset_right = 1222.0
+offset_bottom = 1042.0
+texture_under = ExtResource("5_oklq0")
+texture_over = ExtResource("6_wcqvn")
+texture_progress = ExtResource("7_oklq0")
+
+[node name="EnemyName" type="Label" parent="."]
+offset_left = 862.0
+offset_top = 192.0
+offset_right = 955.0
+offset_bottom = 232.0
+theme_override_fonts/font = ExtResource("2_flaeg")
+theme_override_font_sizes/font_size = 40
+text = "Enemy"
+horizontal_alignment = 2
+
+[node name="Enemy" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1376, 168)
+scale = Vector2(-5, 5)
+sprite_frames = ExtResource("2_erfcq")
+animation = &"Base"
+frame_progress = 0.438504
+
+[node name="DresseurEnemy" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1752, 168)
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("4_oklq0")
+animation = &"base"
+
+[node name="JaugeEnemy" type="TextureProgressBar" parent="."]
+offset_left = 1102.0
+offset_top = 230.0
+offset_right = 1508.0
+offset_bottom = 317.0
+scale = Vector2(-1, 1)
+texture_under = ExtResource("5_oklq0")
+texture_over = ExtResource("6_wcqvn")
+texture_progress = ExtResource("7_oklq0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="hBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 1308.0
+offset_top = 842.0
+offset_right = 1847.0
+offset_bottom = 1016.0
+theme_override_constants/separation = 20
+
+[node name="vBoxContainer" type="VBoxContainer" parent="CanvasLayer/hBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="Attaque" type="Button" parent="CanvasLayer/hBoxContainer/vBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+disabled = true
+action_mode = 0
+text = "Attaques"
+
+[node name="Objets" type="Button" parent="CanvasLayer/hBoxContainer/vBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+disabled = true
+action_mode = 0
+text = "Objets"
+
+[node name="vBoxContainer2" type="VBoxContainer" parent="CanvasLayer/hBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="Kaurus" type="Button" parent="CanvasLayer/hBoxContainer/vBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+disabled = true
+action_mode = 0
+text = "Kaurus"
+
+[node name="Fuire" type="Button" parent="CanvasLayer/hBoxContainer/vBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+disabled = true
+action_mode = 0
+text = "Fuire"
+
+[node name="ArrayOfItem" type="CanvasLayer" parent="."]
+offset = Vector2(100, 370)
+transform = Transform2D(1, 0, 0, 1, 100, 370)
+
+[node name="ItemList" type="ItemList" parent="ArrayOfItem"]
+custom_minimum_size = Vector2(1700, 320)
+offset_right = 1700.0
+offset_bottom = 300.0
+theme_override_constants/v_separation = 100
+theme_override_fonts/font = ExtResource("2_flaeg")
+theme_override_font_sizes/font_size = 50
+max_columns = 3
+same_column_width = true
+fixed_column_width = 555
+
+[connection signal="mouse_entered" from="CanvasLayer/hBoxContainer/vBoxContainer/Attaque" to="." method="_on_attaque_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/hBoxContainer/vBoxContainer/Attaque" to="." method="_on_attaque_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/hBoxContainer/vBoxContainer/Attaque" to="." method="_on_attaque_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/hBoxContainer/vBoxContainer/Objets" to="." method="_on_objets_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/hBoxContainer/vBoxContainer/Objets" to="." method="_on_objets_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/hBoxContainer/vBoxContainer2/Kaurus" to="." method="_on_kaurus_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/hBoxContainer/vBoxContainer2/Kaurus" to="." method="_on_kaurus_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/hBoxContainer/vBoxContainer2/Fuire" to="." method="_on_fuire_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/hBoxContainer/vBoxContainer2/Fuire" to="." method="_on_fuire_mouse_exited"]
+[connection signal="item_selected" from="ArrayOfItem/ItemList" to="." method="_on_item_list_item_selected"]

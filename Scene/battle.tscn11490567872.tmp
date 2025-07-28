@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://5je5c3s3tlg3"]
+
+[ext_resource type="Script" uid="uid://djgyyoos0gufh" path="res://Script/battle.gd" id="1_erfcq"]
+[ext_resource type="SpriteFrames" uid="uid://c8o7aj5f45h83" path="res://AnimSprite/KaurusGreen.tres" id="2_erfcq"]
+
+[node name="Battle" type="Node"]
+script = ExtResource("1_erfcq")
+
+[node name="Test" type="Label" parent="."]
+offset_left = 546.0
+offset_top = 513.0
+offset_right = 1619.0
+offset_bottom = 684.0
+
+[node name="Kaurus" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(336, 525)
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("2_erfcq")
+animation = &"dead"
